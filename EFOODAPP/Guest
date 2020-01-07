@@ -1,0 +1,57 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.SqlClient;
+
+namespace MrDelivery
+{
+    public partial class Form1 : Form
+    {
+        string connectionString = @"Data Source=DESKTOP-QABCRCQ;Initial Catalog=MRDELIVERY;Integrated Security=True";
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (nametxt.Text == "" || lasttxt.Text == "" || adresstxt.Text == "" || phonetxt.Text == "" || floortxt.Text == "" || koudounitxt.Text == "")
+                MessageBox.Show("Please Fill Mandatory Fields");
+            else
+            {
+                using (SqlConnection sqlCon = new SqlConnection(connectionString))
+                {
+                    sqlCon.Open();
+                    SqlCommand sqlCmd = new SqlCommand("UserGuest", sqlCon);
+                    sqlCmd.CommandType = CommandType.StoredProcedure;
+                    sqlCmd.Parameters.AddWithValue("@Firstname", nametxt.Text.Trim());
+                    sqlCmd.Parameters.AddWithValue("@Lastname", lasttxt.Text.Trim());
+                    sqlCmd.Parameters.AddWithValue("@Address", adresstxt.Text.Trim());
+                    sqlCmd.Parameters.AddWithValue("@Phone", phonetxt.Text.Trim());
+                    sqlCmd.Parameters.AddWithValue("@Floor", floortxt.Text.Trim());
+                    sqlCmd.Parameters.AddWithValue("@OnomaKoudouniou", koudounitxt.Text.Trim());
+
+                    sqlCmd.ExecuteNonQuery();
+                    MessageBox.Show("Successfull");
+                    Clear();
+                    this.Hide();
+                    var newForm = new OrderNow();
+                    newForm.Show();
+
+
+                }
+            }
+        }
+        void Clear()
+        {
+            nametxt.Text = lasttxt.Text = phonetxt.Text = adresstxt.Text = floortxt.Text = koudounitxt.Text = "";
+        }
+
+    }
+}
