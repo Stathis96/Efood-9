@@ -1,0 +1,72 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DisplayShops.aspx.cs" Inherits="SearchShops.DisplayShops" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+
+    <script type="text/javascript"
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCTTBhobcg4A_UPrmSPsrK8qFNFLoFaU0&sensor=false">
+</script>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places">
+</script>
+<script type="text/javascript">
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success);
+    } else {
+        alert("Geo Location is not supported on your current browser!");
+    }
+    function success(position) {
+        var lat = position.coords.latitude;
+        var long = position.coords.longitude;
+        var city = position.coords.locality;
+        var myLatlng = new google.maps.LatLng(lat, long);
+        var myOptions = {
+            center: myLatlng,
+            zoom: 12,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            title: "lat: " + lat + " long: " + long
+        });
+
+        marker.setMap(map);
+        var infowindow = new google.maps.InfoWindow({ content: "<b>User Address</b><br/> Latitude:" + lat + "<br /> Longitude:" + long + "" });
+        infowindow.open(map, marker);
+    }
+</script>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+			<center>
+				<h1>Search For Available Shops</h1>
+				<hr />
+  Search by name : <asp:TextBox ID="TxtSearch" runat="server" Width="118px"></asp:TextBox>
+			<asp:Button ID="ButSearch" runat="server" Text="Search" OnClick="ButSearch_Click" />
+                <br />
+                  Or choose food type :  <asp:CheckBoxList ID="CheckBoxList1" runat="server">
+                        <asp:ListItem>Souvlakia</asp:ListItem>
+                        <asp:ListItem>Burgers</asp:ListItem>
+                        <asp:ListItem>Crepes</asp:ListItem>
+                </asp:CheckBoxList>
+                <br />
+               You have chosen : 
+                 <br />
+                <asp:Label ID="Label1" runat="server" ></asp:Label>
+                <hr />
+			    <br />
+			<asp:GridView ID="GridView1" runat="server" ShowHeaderWhenEmpty="true" EmptyDataText="No Shops Found!!" >	
+			</asp:GridView>
+			    <br />
+                <label>Your current location on map</label>
+                <div id="map_canvas" style="width: 800px; height: 500px"></div>
+			</center>
+        </div>
+    </form>
+</body>
+</html>
