@@ -14,7 +14,7 @@ namespace MrDelivery
 {
     public partial class OrderNow : Form
     {
-        string connectionString = @"Data Source=STATHIS-PC\SQLEXPRESS;Initial Catalog = tempdb; Integrated Security = True";
+        string connectionString = @"Data Source=DESKTOP-QABCRCQ;Initial Catalog=MRDELIVERY;Integrated Security=True";
 
         public OrderNow()
         {
@@ -26,7 +26,7 @@ namespace MrDelivery
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
             {
                 sqlCon.Open();
-                string sqlquery = "select * from [dbo].[Table] ";
+                string sqlquery = "select * from [dbo].[tbl_Shop] ";
                 SqlCommand sqlcomm = new SqlCommand(sqlquery, sqlCon);
                 SqlDataAdapter sdr = new SqlDataAdapter(sqlcomm);
                 DataTable dt = new DataTable();
@@ -38,36 +38,12 @@ namespace MrDelivery
                 sqlCon.Close();
             }
         }
-        private void label6_Click(object sender, EventArgs e)
-        {
-            var newForm = new S1();
-            newForm.Show();
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-            var newForm = new S2();
-            newForm.Show();
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-            var newForm = new S3();
-            newForm.Show();
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-            var newForm = new S4();
-            newForm.Show();
-        }
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
             {
                 sqlCon.Open();
-                string sqlquery = "select * from [dbo].[Table] where name like '" + textBox1.Text + "%'";
+                string sqlquery = "select * from [dbo].[tbl_Shop] where Name like '" + textBox1.Text + "%'";
                 SqlCommand sqlcomm = new SqlCommand(sqlquery, sqlCon);
                 SqlDataAdapter sdr = new SqlDataAdapter(sqlcomm);
                 DataTable dt = new DataTable();
@@ -83,7 +59,7 @@ namespace MrDelivery
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
             {
                 sqlCon.Open();
-                string sqlquery = "select * from [dbo].[Table] where tupos='" +comboBox1.Text.ToString()+"'";
+                string sqlquery = "select * from [dbo].[tbl_Shop] where Tupos='" + comboBox1.Text.ToString() + "'";
                 SqlCommand sqlcomm = new SqlCommand(sqlquery, sqlCon);
                 SqlDataAdapter sdr = new SqlDataAdapter(sqlcomm);
                 DataTable dt = new DataTable();
@@ -94,9 +70,34 @@ namespace MrDelivery
             }
         }
 
-        private void label12_Click(object sender, EventArgs e)
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            using (SqlConnection sqlCon = new SqlConnection(connectionString))
+            {
+                sqlCon.Open();
+                var item = dataGridView1.Rows[e.RowIndex].Cells[0].Value;
+                if ((int)item >100 && (int)item < 200) //Range 100++ tupos Souvlakia
+                {
+                    var newForm = new S1();
+                    newForm.Show();
+                }
+                else if ((int)item > 200 && (int)item < 300) //Range 200++ tupos Crepes
+                {
+                    var newForm = new S2();
+                    newForm.Show();
+                }
+                else if ((int)item > 200 && (int)item < 300) //Range 300++ tupos Burgers
+                {
+                    var newForm = new S3();
+                    newForm.Show();
+                }
+                else //Range 400++ tupos Pizza
+                {
+                    var newForm = new S4();
+                    newForm.Show();
+                }
 
+            }
         }
     }
 }
