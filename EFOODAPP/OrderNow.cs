@@ -26,14 +26,12 @@ namespace MrDelivery
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
             {
                 sqlCon.Open();
-                string sqlquery = "select * from [dbo].[tbl_Shop] ";
+                string sqlquery = "select * from [dbo].[tbl_shop] ";
                 SqlCommand sqlcomm = new SqlCommand(sqlquery, sqlCon);
                 SqlDataAdapter sdr = new SqlDataAdapter(sqlcomm);
                 DataTable dt = new DataTable();
                 sdr.Fill(dt);
                 dataGridView1.DataSource = dt;
-                comboBox1.DisplayMember = "Tupos";
-                comboBox1.DataSource = dt;
                 sqlcomm.ExecuteNonQuery();
                 sqlCon.Close();
             }
@@ -43,7 +41,7 @@ namespace MrDelivery
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
             {
                 sqlCon.Open();
-                string sqlquery = "select * from [dbo].[tbl_Shop] where Name like '" + textBox1.Text + "%'";
+                string sqlquery = "select * from [dbo].[tbl_shop] where Name like '" + textBox1.Text + "%'";
                 SqlCommand sqlcomm = new SqlCommand(sqlquery, sqlCon);
                 SqlDataAdapter sdr = new SqlDataAdapter(sqlcomm);
                 DataTable dt = new DataTable();
@@ -59,7 +57,7 @@ namespace MrDelivery
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
             {
                 sqlCon.Open();
-                string sqlquery = "select * from [dbo].[tbl_Shop] where Tupos='" + comboBox1.Text.ToString() + "'";
+                string sqlquery = "select * from [dbo].[tbl_shop] where Tupos='" + comboBox1.Text.ToString() + "'";
                 SqlCommand sqlcomm = new SqlCommand(sqlquery, sqlCon);
                 SqlDataAdapter sdr = new SqlDataAdapter(sqlcomm);
                 DataTable dt = new DataTable();
@@ -78,7 +76,7 @@ namespace MrDelivery
             {
                 sqlCon.Open();
                 var item = dataGridView1.Rows[e.RowIndex].Cells[0].Value;
-                if ((int)item >100 && (int)item < 200) //Range 100++ tupos Souvlakia
+                if ((int)item > 100 && (int)item < 200) //Range 100++ tupos Souvlakia
                 {
                     var newForm = new S1();
                     newForm.Show();
@@ -106,6 +104,24 @@ namespace MrDelivery
         {
             var newForm = new Current_Location();
             newForm.Show();
+        }
+
+        private void comboBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            using (SqlConnection sqlCon = new SqlConnection(connectionString))
+            {
+                sqlCon.Open();
+                string sqlquery = "select * from [dbo].[tbl_shop] ";
+                SqlCommand sqlcomm = new SqlCommand(sqlquery, sqlCon);
+                SqlDataAdapter sdr = new SqlDataAdapter(sqlcomm);
+                DataTable dt = new DataTable();
+                sdr.Fill(dt);
+                dataGridView1.DataSource = dt;
+                comboBox1.DisplayMember = "Tupos";
+                comboBox1.DataSource = dt;
+                sqlcomm.ExecuteNonQuery();
+                sqlCon.Close();
+            }
         }
     }
 }
