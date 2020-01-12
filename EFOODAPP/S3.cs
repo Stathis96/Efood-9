@@ -13,14 +13,14 @@ namespace MrDelivery
     public partial class S3 : Form
     {
         double ichange;
-        const double Price_Special = 2.1;
-        const double Price_Margarita = 2.5;
-        const double Price_Allantikwn = 3.1;
-        const double Price_4tyria = 2.7;
-        const double Price_Xwriatikhpizza = 10.2;
-        const double Price_AlPolo = 1.5;
-        const double Price_BBQ = 3.3;
-        const double Price_Mexicana = 4.5;
+        const double Price_Special = 7.0;
+        const double Price_Margarita = 6.0;
+        const double Price_Allantikwn = 6.5;
+        const double Price_4tyria = 6.5;
+        const double Price_Xwriatikhpizza = 7.0;
+        const double Price_AlPolo = 7.0;
+        const double Price_BBQ = 7.2;
+        const double Price_Mexicana = 8.5;
         const double Price_Ceasars = 2.2;
         const double Price_Chef = 3.4;
         const double Price_Xwriatikh = 4.5;
@@ -42,8 +42,8 @@ namespace MrDelivery
 
         private void prosthiki3_Click(object sender, EventArgs e)
         {
-            var newForm = new CartPayment();
-            newForm.Show();
+            var newForm = new CartPayment(txtTotal.Text);
+            newForm.Show(this);
         }
         private void chkspecial_CheckedChanged(object sender, EventArgs e)
         {
@@ -404,7 +404,8 @@ namespace MrDelivery
             txtTax.Text = Convert.ToString(iTax);
             iTotal = (iSub + iTax);
             txtTotal.Text = Convert.ToString(iTotal);
-            cost = ichange - (iTax + iTotal);
+            ichange = Convert.ToDouble(txtPayment.Text);
+            cost = ichange - iTotal;
             txtChange.Text = Convert.ToString(cost);
 
             txtChange.Text = String.Format("{0:C}", cost);
