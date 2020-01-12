@@ -1,0 +1,19 @@
+-- -----------------------------------------------------
+-- Table `mydb`.`tbl_guest`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`tbl_guest` (
+  `Telephone` VARCHAR(10) NOT NULL,
+  `Email` VARCHAR(45) NOT NULL,
+  `FirstName` VARCHAR(45) NOT NULL,
+  `LastName` VARCHAR(45) NOT NULL,
+  `Floor` VARCHAR(45) NOT NULL,
+  `Bell` VARCHAR(45) NOT NULL,
+  `Address` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`Telephone`),
+  UNIQUE INDEX `Email_UNIQUE` (`Email` ASC) VISIBLE,
+  CONSTRAINT `fk_Guest_UserSupport1`
+    FOREIGN KEY (`Email`)
+    REFERENCES `mydb`.`tbl_support` (`Email`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
