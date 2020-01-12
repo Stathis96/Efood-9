@@ -1,0 +1,18 @@
+-- -----------------------------------------------------
+-- Table `mydb`.`tbl_cart`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`tbl_cart` (
+  `OrderID` INT NOT NULL AUTO_INCREMENT,
+  `Piece` INT NOT NULL DEFAULT 0,
+  `Price` INT NOT NULL,
+  `TotalPrice` VARCHAR(45) NOT NULL,
+  `ProdName` VARCHAR(45) NOT NULL,
+  `ID_Order` INT NOT NULL,
+  PRIMARY KEY (`OrderID`),
+  UNIQUE INDEX `OrderID_UNIQUE` (`OrderID` ASC) VISIBLE,
+  CONSTRAINT `fk_Cart_Order1`
+    FOREIGN KEY (`ID_Order`)
+    REFERENCES `mydb`.`tbl_order` (`OrderID`)
+    ON DELETE RESTRICT
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
