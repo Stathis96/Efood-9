@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -42,8 +43,8 @@ namespace MrDelivery
 
         private void prosthiki1_Click(object sender, EventArgs e)
         {
-            var newForm = new CartPayment();
-            newForm.Show();
+            CartPayment obj = new CartPayment(txtTotal.Text);
+            obj.Show(this);
         }
 
         private void checkedListBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -63,6 +64,12 @@ namespace MrDelivery
              };
             func(Controls);
         }
+
+        internal void someMethod()
+        {
+            throw new NotImplementedException();
+        }
+
         private void EnableTextBoxes()
         {
             Action<Control.ControlCollection> func = null;
@@ -401,10 +408,10 @@ namespace MrDelivery
 
         }
 
-        private void S1_Load(object sender, EventArgs e)
+        void S1_Load(object sender, EventArgs e)
         {
-
         }
+             
 
         private void commbtn_Click(object sender, EventArgs e)
         {
@@ -453,7 +460,8 @@ namespace MrDelivery
             txtTax.Text = Convert.ToString(iTax);
             iTotal = (iSub + iTax);
             txtTotal.Text = Convert.ToString(iTotal);
-            cost = ichange - (iTax + iTotal);
+            ichange = Convert.ToDouble(txtPayment.Text);
+            cost = ichange - iTotal;
             txtChange.Text= Convert.ToString(cost);
 
             txtChange.Text = String.Format("{0:C}", cost);
