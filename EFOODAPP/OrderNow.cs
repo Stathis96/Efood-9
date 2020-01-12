@@ -32,7 +32,7 @@ namespace MrDelivery
                 DataTable dt = new DataTable();
                 sdr.Fill(dt);
                 dataGridView1.DataSource = dt;
-                comboBox1.DisplayMember = "tupos";
+                comboBox1.DisplayMember = "Tupos";
                 comboBox1.DataSource = dt;
                 sqlcomm.ExecuteNonQuery();
                 sqlCon.Close();
@@ -70,6 +70,8 @@ namespace MrDelivery
             }
         }
 
+
+
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
@@ -98,6 +100,12 @@ namespace MrDelivery
                 }
 
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var newForm = new Current_Location();
+            newForm.Show();
         }
     }
 }
