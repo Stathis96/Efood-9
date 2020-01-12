@@ -1,0 +1,51 @@
+namespace MrDelivery
+{
+        [...]
+        int ShopID = 0;
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            using (SqlConnection sqlCon = new SqlConnection(connectionString))
+            using (SqlCommand command = sqlCon.CreateCommand())
+            {
+                sqlCon.Open();
+                var item = dataGridView1.Rows[e.RowIndex].Cells[0].Value;
+                if ((int)item >100 && (int)item < 200) //Range 100++ tupos Souvlakia
+                {
+                    ShopID = 1;
+                    command.CommandText = "UPDATE tbl_ShopID_ForRate SET ShopID = @ShopID";
+                    command.Parameters.AddWithValue("@ShopID", ShopID);
+                    command.ExecuteNonQuery();
+                    var newForm = new S1();
+                    newForm.Show();
+                }
+                else if ((int)item > 200 && (int)item < 300) //Range 200++ tupos Crepes
+                {
+                    ShopID = 2;
+                    command.CommandText = "UPDATE tbl_ShopID_ForRate SET ShopID = @ShopID";
+                    command.Parameters.AddWithValue("@ShopID", ShopID);
+                    command.ExecuteNonQuery();
+                    var newForm = new S2();
+                    newForm.Show();
+                }
+                else if ((int)item > 200 && (int)item < 300) //Range 300++ tupos Burgers
+                {
+                    ShopID = 3;
+                    command.CommandText = "UPDATE tbl_ShopID_ForRate SET ShopID = @ShopID";
+                    command.Parameters.AddWithValue("@ShopID", ShopID);
+                    command.ExecuteNonQuery();
+                    var newForm = new S3();
+                    newForm.Show();
+                }
+                else //Range 400++ tupos Pizza
+                {
+                    ShopID = 4;
+                    command.CommandText = "UPDATE tbl_ShopID_ForRate SET ShopID = @ShopID";
+                    command.Parameters.AddWithValue("@ShopID", ShopID);
+                    command.ExecuteNonQuery();
+                    var newForm = new S4();
+                    newForm.Show();
+                }
+                sqlCon.Close();
+            }
+                [...]
