@@ -1,0 +1,15 @@
+-- -----------------------------------------------------
+-- Table `mydb`.`tbl_shop`
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `mydb`.`Shop` (
+  `ShopID` INT NOT NULL,
+  `Name` VARCHAR(45) NOT NULL,
+  `Address` VARCHAR(45) NOT NULL,
+  `Phone` VARCHAR(45) NOT NULL,
+  `Tupos` VARCHAR(45) NOT NULL,
+  `Rating` DOUBLE NULL,
+  PRIMARY KEY (`ShopID`),
+  UNIQUE INDEX `Phone_UNIQUE` (`Phone` ASC) VISIBLE,
+  UNIQUE INDEX `Address_UNIQUE` (`Address` ASC) VISIBLE)
+ENGINE = InnoDB;
