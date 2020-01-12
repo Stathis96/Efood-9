@@ -394,14 +394,14 @@ namespace MrDelivery
                 {
 
                     sqlCon.Open();
-                    command.CommandText = "SELECT ShopRating FROM(SELECT ShopRating, ROW_NUMBER() OVER(ORDER BY ShopID) AS rownumber FROM tbl_RateShop) AS foo WHERE foo.rownumber BETWEEN 1 and 1";
+                    command.CommandText = "SELECT Rating FROM(SELECT Rating, ROW_NUMBER() OVER(ORDER BY ShopID) AS rownumber FROM tbl_RateShop) AS foo WHERE foo.rownumber BETWEEN 1 and 1";
 
                     SqlDataReader reader = (null);
                     reader = command.ExecuteReader();
 
                     while (reader.Read())
                     {
-                        convertMo = (reader["ShopRating"].ToString());
+                        convertMo = (reader["Rating"].ToString());
                     }
                     sqlCon.Close();
 
@@ -413,7 +413,7 @@ namespace MrDelivery
 
                     sqlCon.Open();
 
-                    command.CommandText = "UPDATE tbl_RateShop SET ShopRating = '" + txtMo + "' WHERE ShopID = 1";
+                    command.CommandText = "UPDATE tbl_Shop SET Rating = '" + txtMo + "' WHERE ShopID = 1";
                     command.ExecuteNonQuery();
 
                     sqlCon.Close();
@@ -432,14 +432,14 @@ namespace MrDelivery
                 {
 
                     sqlCon.Open();
-                    command.CommandText = "SELECT ShopRating FROM(SELECT ShopRating, ROW_NUMBER() OVER(ORDER BY ShopID) AS rownumber FROM tbl_RateShop) AS foo WHERE foo.rownumber BETWEEN 2 and 2";
+                    command.CommandText = "SELECT Rating FROM(SELECT Rating, ROW_NUMBER() OVER(ORDER BY ShopID) AS rownumber FROM tbl_RateShop) AS foo WHERE foo.rownumber BETWEEN 2 and 2";
 
                     SqlDataReader reader = (null);
                     reader = command.ExecuteReader();
 
                     while (reader.Read())
                     {
-                        convertMo = (reader["ShopRating"].ToString());
+                        convertMo = (reader["Rating"].ToString());
                     }
                     sqlCon.Close();
 
@@ -451,7 +451,7 @@ namespace MrDelivery
 
                     sqlCon.Open();
 
-                    command.CommandText = "UPDATE tbl_RateShop SET ShopRating = '" + txtMo + "' WHERE ShopID = 2";
+                    command.CommandText = "UPDATE tbl_Shop SET Rating = '" + txtMo + "' WHERE ShopID = 2";
                     command.ExecuteNonQuery();
 
                     sqlCon.Close();
@@ -470,14 +470,14 @@ namespace MrDelivery
                 {
 
                     sqlCon.Open();
-                    command.CommandText = "SELECT ShopRating FROM(SELECT ShopRating, ROW_NUMBER() OVER(ORDER BY ShopID) AS rownumber FROM tbl_RateShop) AS foo WHERE foo.rownumber BETWEEN 3 and 3";
+                    command.CommandText = "SELECT Rating FROM(SELECT Rating, ROW_NUMBER() OVER(ORDER BY ShopID) AS rownumber FROM tbl_RateShop) AS foo WHERE foo.rownumber BETWEEN 3 and 3";
 
                     SqlDataReader reader = (null);
                     reader = command.ExecuteReader();
 
                     while (reader.Read())
                     {
-                        convertMo = (reader["ShopRating"].ToString());
+                        convertMo = (reader["Rating"].ToString());
                     }
                     sqlCon.Close();
 
@@ -489,7 +489,7 @@ namespace MrDelivery
 
                     sqlCon.Open();
 
-                    command.CommandText = "UPDATE tbl_RateShop SET ShopRating = '" + txtMo + "' WHERE ShopID = 3";
+                    command.CommandText = "UPDATE tbl_Shop SET Rating = '" + txtMo + "' WHERE ShopID = 3";
                     command.ExecuteNonQuery();
 
                     sqlCon.Close();
@@ -508,14 +508,14 @@ namespace MrDelivery
                 {
 
                     sqlCon.Open();
-                    command.CommandText = "SELECT ShopRating FROM(SELECT ShopRating, ROW_NUMBER() OVER(ORDER BY ShopID) AS rownumber FROM tbl_RateShop) AS foo WHERE foo.rownumber BETWEEN 4 and 4";
+                    command.CommandText = "SELECT Rating FROM(SELECT Rating, ROW_NUMBER() OVER(ORDER BY ShopID) AS rownumber FROM tbl_RateShop) AS foo WHERE foo.rownumber BETWEEN 4 and 4";
 
                     SqlDataReader reader = (null);
                     reader = command.ExecuteReader();
 
                     while (reader.Read())
                     {
-                        convertMo = (reader["ShopRating"].ToString());
+                        convertMo = (reader["Rating"].ToString());
                     }
                     sqlCon.Close();
 
@@ -527,7 +527,7 @@ namespace MrDelivery
 
                     sqlCon.Open();
 
-                    command.CommandText = "UPDATE tbl_RateShop SET ShopRating = '" + txtMo + "' WHERE ShopID = 4";                   
+                    command.CommandText = "UPDATE tbl_Shop SET Rating = '" + txtMo + "' WHERE ShopID = 4";                   
                     command.ExecuteNonQuery();
 
                     sqlCon.Close();
