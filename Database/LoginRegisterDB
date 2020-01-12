@@ -1,0 +1,26 @@
+-- -----------------------------------------------------
+-- Table `mydb`.`tbl_user`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`tbl_user` (
+  `UserID` INT NOT NULL AUTO_INCREMENT,
+  `Username` VARCHAR(45) NOT NULL,
+  `Password` VARCHAR(45) NOT NULL,
+  `Email` VARCHAR(45) NOT NULL,
+  `FirstName` VARCHAR(45) NOT NULL,
+  `LastName` VARCHAR(45) NOT NULL,
+  `Address` VARCHAR(45) NOT NULL,
+  `Floor` VARCHAR(45) NOT NULL,
+  `Bell` VARCHAR(45) NOT NULL,
+  `Telephone` VARCHAR(10) NOT NULL,
+  UNIQUE INDEX `Password_UNIQUE` (`Password` ASC) VISIBLE,
+  UNIQUE INDEX `Username_UNIQUE` (`Username` ASC) VISIBLE,
+  UNIQUE INDEX `Email_UNIQUE` (`Email` ASC) VISIBLE,
+  PRIMARY KEY (`UserID`),
+  UNIQUE INDEX `Telephone_UNIQUE` (`Telephone` ASC) VISIBLE,
+  INDEX `fk_User_UserSupport1_idx` (`Email` ASC, `Telephone` ASC) VISIBLE,
+  CONSTRAINT `fk_User_UserSupport1`
+    FOREIGN KEY (`Email` , `Telephone`)
+    REFERENCES `mydb`.`tbl_support` (`Email` , `Telephone`)
+    ON DELETE RESTRICT
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
