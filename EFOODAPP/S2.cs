@@ -47,8 +47,8 @@ namespace MrDelivery
 
         private void prosthiki2_Click(object sender, EventArgs e)
         {
-            var newForm = new CartPayment();
-            newForm.Show();
+            var newForm = new CartPayment(txtTotal.Text);
+            newForm.Show(this);
         }
         private void RestTextBoxes()
         {
@@ -442,7 +442,8 @@ namespace MrDelivery
             txtTax.Text = Convert.ToString(iTax);
             iTotal = (iSub + iTax);
             txtTotal.Text = Convert.ToString(iTotal);
-            cost = ichange - (iTax + iTotal);
+            ichange = Convert.ToDouble(txtPayment.Text);
+            cost = ichange - iTotal;
             txtChange.Text = Convert.ToString(cost);
 
             txtChange.Text = String.Format("{0:C}", cost);
