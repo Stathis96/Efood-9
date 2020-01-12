@@ -394,7 +394,7 @@ namespace MrDelivery
                 {
 
                     sqlCon.Open();
-                    command.CommandText = "SELECT Rating FROM(SELECT Rating, ROW_NUMBER() OVER(ORDER BY ShopID) AS rownumber FROM tbl_RateShop) AS foo WHERE foo.rownumber BETWEEN 1 and 1";
+                    command.CommandText = "SELECT Rating FROM(SELECT Rating, ROW_NUMBER() OVER(ORDER BY ShopID) AS rownumber FROM tbl_Shop) AS foo WHERE foo.rownumber BETWEEN 1 and 1";
 
                     SqlDataReader reader = (null);
                     reader = command.ExecuteReader();
@@ -432,7 +432,7 @@ namespace MrDelivery
                 {
 
                     sqlCon.Open();
-                    command.CommandText = "SELECT Rating FROM(SELECT Rating, ROW_NUMBER() OVER(ORDER BY ShopID) AS rownumber FROM tbl_RateShop) AS foo WHERE foo.rownumber BETWEEN 2 and 2";
+                    command.CommandText = "SELECT Rating FROM(SELECT Rating, ROW_NUMBER() OVER(ORDER BY ShopID) AS rownumber FROM tbl_Shop) AS foo WHERE foo.rownumber BETWEEN 2 and 2";
 
                     SqlDataReader reader = (null);
                     reader = command.ExecuteReader();
@@ -470,7 +470,7 @@ namespace MrDelivery
                 {
 
                     sqlCon.Open();
-                    command.CommandText = "SELECT Rating FROM(SELECT Rating, ROW_NUMBER() OVER(ORDER BY ShopID) AS rownumber FROM tbl_RateShop) AS foo WHERE foo.rownumber BETWEEN 3 and 3";
+                    command.CommandText = "SELECT Rating FROM(SELECT Rating, ROW_NUMBER() OVER(ORDER BY ShopID) AS rownumber FROM tbl_Shop) AS foo WHERE foo.rownumber BETWEEN 3 and 3";
 
                     SqlDataReader reader = (null);
                     reader = command.ExecuteReader();
@@ -508,7 +508,7 @@ namespace MrDelivery
                 {
 
                     sqlCon.Open();
-                    command.CommandText = "SELECT Rating FROM(SELECT Rating, ROW_NUMBER() OVER(ORDER BY ShopID) AS rownumber FROM tbl_RateShop) AS foo WHERE foo.rownumber BETWEEN 4 and 4";
+                    command.CommandText = "SELECT Rating FROM(SELECT Rating, ROW_NUMBER() OVER(ORDER BY ShopID) AS rownumber FROM tbl_Shop) AS foo WHERE foo.rownumber BETWEEN 4 and 4";
 
                     SqlDataReader reader = (null);
                     reader = command.ExecuteReader();
