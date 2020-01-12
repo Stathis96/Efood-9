@@ -24,9 +24,6 @@ namespace MrDelivery
             
         }
 
-        
-
-        double ShpID;
         double ScoreTaxitita;
         double ScorePoiothta;
         double currentmo = 0;
