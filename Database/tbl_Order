@@ -1,0 +1,28 @@
+-- -----------------------------------------------------
+-- Table `mydb`.`tbl_order`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`tbl_order` (
+  `OrderID` INT NOT NULL AUTO_INCREMENT,
+  `UserID` INT NULL,
+  `ShopID` INT NOT NULL,
+  `TotalPrice` DOUBLE NOT NULL,
+  `Telephone` VARCHAR(10) NOT NULL,
+  PRIMARY KEY (`OrderID`),
+  UNIQUE INDEX `ShopID_UNIQUE` (`ShopID` ASC) VISIBLE,
+  UNIQUE INDEX `Telephone_UNIQUE` (`Telephone` ASC) VISIBLE,
+  CONSTRAINT `fk_Order_Guest1`
+    FOREIGN KEY (`Telephone`)
+    REFERENCES `mydb`.`tbl_guest` (`Telephone`)
+    ON DELETE RESTRICT
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Order_User1`
+    FOREIGN KEY (`Telephone`)
+    REFERENCES `mydb`.`tbl_user` (`Telephone`)
+    ON DELETE RESTRICT
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Order_PaymentMethod1`
+    FOREIGN KEY (`Telephone`)
+    REFERENCES `mydb`.`tbl_pay` (`Telephone`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
